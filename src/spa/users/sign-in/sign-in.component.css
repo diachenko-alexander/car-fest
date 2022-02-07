@@ -1,0 +1,40 @@
+:host{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vh;
+  background-image: url("../../../assets/imgs/signinlogo.jpg");
+}
+
+.sign-in-form {
+  min-width: 290px;
+  background-color: rgb(194, 204, 207);
+  opacity: 0.9;
+  padding: 20px;
+  margin: 5px 10px;
+  border-radius: 10% 0;
+}
+
+h4 {
+  text-align: center;
+}
+
+span>img,
+.message,
+button[type=submit] {
+  float: right
+
+}
+
+.message {
+  margin-right: 5%;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+input {
+  margin-top: 5px;
+}

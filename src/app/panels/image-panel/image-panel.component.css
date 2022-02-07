@@ -1,0 +1,17 @@
+.image-holder {
+  flex-grow: 1;
+  height: 200px;
+  background-image: url('../../../assets/imgs/signinlogo.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+span {
+  color: #fff;
+  font-size: 30px;
+}
+
+.title {
+  text-align: center;
+  background-color: rgba(170, 170, 170, 0.7);
+}

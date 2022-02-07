@@ -1,0 +1,6 @@
+<div @visibility *ngIf="car">
+  <spa-dynamic-form [vm]="car" [vmDefinition]="carDefinitionInput"
+                    [operation]="operation" [errorMessage]="errorMessage" (update)="updateCar($event)"
+                    (create)="createCar($event)"></spa-dynamic-form>
+</div>
+

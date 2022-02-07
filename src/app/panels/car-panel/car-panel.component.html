@@ -1,0 +1,18 @@
+<div @visibility>
+  <div class="group" *screenLarge>
+    <div class='index'><span>{{index}}</span></div>
+    <div class='car-img'><img src='../../../assets/imgs/car.png' [alt]='car.name'></div>
+    <div class='car-name'><span>{{car.name}}</span></div>
+    <div class='car-model'><span>{{car.model}}</span></div>
+    <div class='car-price'><span>{{car.price | currency: 'USD'}}</span></div>
+  </div>
+  <div class="group-small" *screenSmall>
+    <div class='title-group-small'>
+      <div class='index-small'><span>{{index}}</span></div>
+      <div class='car-img-small'><img src='../../../assets/imgs/car.png' [alt]='car.name'></div>
+      <div class='car-name-small'><span>{{car.name}}</span></div>
+      <div class='car-model-small'><span>{{car.model}}</span></div>
+      <div class='car-price-small'><span>{{car.price | currency: 'USD'}}</span></div>
+    </div>
+  </div>
+</div>

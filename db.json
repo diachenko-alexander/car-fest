@@ -1,0 +1,60 @@
+{
+  "cars": [
+    {
+      "id": 2,
+      "name": "BMW",
+      "model": "X5",
+      "price": 5500
+    },
+    {
+      "id": 3,
+      "name": "Mazda",
+      "model": "636",
+      "price": 1500
+    },
+    {
+      "id": 4,
+      "name": "Chery",
+      "model": "QQ",
+      "price": 900
+    },
+    {
+      "id": 5,
+      "name": "Fiat",
+      "model": "Doblo",
+      "price": 4900
+    },
+    {
+      "id": 6,
+      "name": "Siat",
+      "model": "Lion2",
+      "price": 666
+    }
+  ],
+  "users": [
+    {
+      "name": "Alex",
+      "email": "alex@gmail.com",
+      "password": "12345",
+      "id": 1
+    },
+    {
+      "name": "Serhey",
+      "email": "patokha@gmail.com",
+      "password": "12345",
+      "id": 2
+    },
+    {
+      "name": "alex",
+      "email": "alex@alex.com",
+      "password": "123",
+      "id": 3
+    },
+    {
+      "name": "test1",
+      "email": "test1@test.com",
+      "password": "123",
+      "id": 4
+    }
+  ]
+}

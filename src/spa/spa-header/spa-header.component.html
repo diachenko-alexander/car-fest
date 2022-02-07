@@ -1,0 +1,16 @@
+<div *screenLarge class="title-bar">
+  <img src="../../assets/imgs/logo.png" alt="Car fest logo">
+  <div class="menu-area">
+    <icon-bar [showIcons]="flagForIcons"></icon-bar>
+    <spa-menu *ngIf="!menuService.isVertical"></spa-menu>
+  </div>
+</div>
+<div *screenSmall class="title-bar-small">
+  <div class="small-icon-holder">
+    <a><img src="../../assets/imgs/menu.png" (click)="menuService.toggleMenu()"></a>
+  </div>
+  <icon-bar [showIcons]="!flagForIcons"></icon-bar>
+  <div class="small-image-holder">
+    <img src="../../assets/imgs/logo.png" alt="Car fest logo" class="small-image">
+  </div>
+</div>

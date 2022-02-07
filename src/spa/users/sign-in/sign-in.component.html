@@ -1,0 +1,23 @@
+<div class="sign-in-form" @visibility>
+  <h4>Sign in</h4>
+  <form novalidate (ngSubmit)="onSubmit(signInForm)" #signInForm='ngForm'>
+    <div class='form-group'>
+      <input type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" autocomplete="off" name='email' required placeholder="User email" ngModel #email='ngModel' class='form-control'>
+      <div class="alert alert-danger" [hidden]='email.valid || email.pristine'>Please enter your email</div>
+    </div>
+    <div class='form-group'>
+      <input type='password' autocomplete="off" name='password' required ngModel #password='ngModel' placeholder="Password" class='form-control'>
+      <div class="alert alert-danger" [hidden]='password.valid || password.pristine'>Password is required</div>
+    </div>
+    <div class='alert alert-danger' *ngIf="formError">{{formError}}</div>
+    <div *ngIf="!submitting">
+      <button routerLink='/register' class='btn btn-success'>Register</button>
+      <button [disabled]='signInForm.invalid' type='submit' class='btn btn-primary'>Sign in</button>
+    </div>
+    <div *ngIf="submitting">
+      <span><img src='../../../assets/imgs/loaderIn.gif'></span>
+      <span class='message'>Signing in ...</span>
+    </div>
+
+  </form>
+</div>

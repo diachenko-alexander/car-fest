@@ -1,0 +1,90 @@
+:host {
+  flex-grow: 1;
+}
+
+.group {
+  display: flex;
+  background-color: #555;
+}
+
+.index {
+  display: flex;
+  width: 40px;
+  background-color: #ddd;
+  color: #333;
+  font-size: 26px;
+  align-items: center;
+  justify-content: center;
+}
+
+.car-img {
+  width: 80px;
+  margin: 8px;
+}
+
+.car-name,
+.car-model {
+  display: flex;
+  flex-grow: 1;
+  font-size: 40px;
+  color: #ddd;
+  align-items: center;
+  justify-content: center;
+}
+
+.car-price {
+  display: flex;
+  font-size: 22px;
+  width: 110px;
+  color: #ffffff;
+  background-color: rgb(216, 94, 94);
+  align-items: center;
+  justify-content: center;
+}
+
+.title-group-small {
+  display: flex;
+  min-height: 40px;
+  background-color: rgb(163, 151, 151);
+}
+
+.index-small {
+  display: flex;
+  width: 24px;
+  background-color: rgb(107, 100, 100);
+  color: rgb(235, 227, 227);
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.car-img-small {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.car-img-small img {
+  width: 40px;
+  margin: 5px;
+}
+
+.car-name-small,
+.car-model-small {
+  display: flex;
+  flex-grow: 1;
+  font-size: 20px;
+  color: #333;
+  align-items: center;
+  justify-content: center;
+}
+
+.car-price-small {
+  display: flex;
+  font-size: 16px;
+  width: 70px;
+  color: #ffffff;
+  background-color: rgb(216, 94, 94);
+  align-items: center;
+  justify-content: center;
+}

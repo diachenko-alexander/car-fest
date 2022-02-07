@@ -1,0 +1,50 @@
+:host {
+  background-color: darkgreen;
+}
+.title-bar {
+  flex-grow: 1;
+  display: flex;
+  min-height: 120px;
+  padding: 10px 0;
+}
+
+.title-bar img {
+  height: 120px;
+}
+
+.menu-area {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding-right: 20px;
+}
+
+.title-bar-small {
+  flex-grow: 1;
+  display: flex;
+  min-height: 60px;
+}
+
+.small-icon-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.small-icon-holder a {
+  border: 1px solid lightgray;
+  border-radius: 20%;
+  opacity: 0.5;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.small-image-holder {
+  flex-grow: 1;
+  display: flex;
+  padding: 10px 0;
+}
+
+.small-image {
+  height: 100px;
+}

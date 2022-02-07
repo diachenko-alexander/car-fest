@@ -1,0 +1,31 @@
+<div class="register-form" @visibility>
+  <h4>Register for new account</h4>
+  <form novalidate (ngSubmit)="onSubmit(registerForm)" #registerForm='ngForm'>
+    <div class='form-group'>
+      <input type='text' autocomplete="off" name='name' required placeholder="User name" ngModel #name='ngModel' class='form-control'>
+      <div class="alert alert-danger" [hidden]='name.valid || name.pristine'>Please enter your name</div>
+    </div>
+    <div class='form-group'>
+      <input type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" autocomplete="off" name='email' required placeholder="User Email" ngModel #email='ngModel' class='form-control'>
+      <div class="alert alert-danger" [hidden]='email.valid || email.pristine'>Please enter your email</div>
+    </div>
+    <div class='form-group'>
+      <input type='password' autocomplete="off" name='password' required ngModel #password='ngModel' placeholder="Password" class='form-control'>
+      <div class="alert alert-danger" [hidden]='password.valid || password.pristine'>Password is required</div>
+    </div>
+<!--    <div class='alert alert-danger' *ngIf="formError">{{formError}}</div>-->
+    <div *ngIf="!registering && !hasAdded">
+      <button routerLink='/sign-in' class='btn btn-danger'>Cancel</button>
+      <button [disabled]='registerForm.invalid' type='submit' class='btn btn-primary'>Register</button>
+    </div>
+    <div *ngIf="registering && !hasAdded">
+      <span class='message'>Registering new user ...</span>
+      <span><img src='../../../assets/imgs/loaderIn.gif'></span>
+    </div>
+    <div *ngIf="hasAdded">
+      <span class='message'>New user has added to database</span>
+
+    </div>
+
+  </form>
+</div>

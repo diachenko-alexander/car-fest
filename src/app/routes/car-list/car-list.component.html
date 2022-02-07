@@ -1,0 +1,8 @@
+<div [ngSwitch]="count">
+  <h3 *ngSwitchCase="1">Price one</h3>
+  <h3 *ngSwitchCase="3">Top 3</h3>
+  <h3 *ngSwitchCase="5">Top 5</h3>
+</div>
+<spa-panel *ngFor="let car of cars; let i = index">
+  <app-car-panel [car]="car" [index]="i+1"></app-car-panel>
+</spa-panel>

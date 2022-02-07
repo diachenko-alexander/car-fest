@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  background-color: darkgray;
+  flex-shrink: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.body-style {
+  padding: 22px;
+  flex-grow: 1;
+}

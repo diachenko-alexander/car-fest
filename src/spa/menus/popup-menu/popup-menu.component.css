@@ -1,0 +1,18 @@
+:host {
+  position: absolute;
+  display: inline-block;
+  width: 160px;
+  background-color: cadetblue;
+  border: 1px solid black;
+  z-index: 1;
+  box-shadow: 2px 2px 5px gray;
+}
+
+:host(.vertical-menu) {
+  position: static;
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}

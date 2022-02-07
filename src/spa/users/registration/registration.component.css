@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('../../../assets/imgs/signinlogo.jpg');
+  background-position: center center;
+  background-size: cover;
+}
+
+.register-form {
+  min-width: 290px;
+  background-color: rgb(194, 204, 207);
+  opacity: 0.9;
+  padding: 20px;
+  margin: 5px 10px;
+  border-radius: 10% 0;
+}
+
+button.btn-primary {
+  float: right;
+}
+
+span>img {
+  margin-left: 5%;
+}

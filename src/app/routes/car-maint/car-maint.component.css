@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+table {
+  margin-top: 20px;
+}
+.btn-sm {
+  width: 60px;
+  margin-left: 5px;
+}

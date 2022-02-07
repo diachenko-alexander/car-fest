@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline;
+}
+
+:host(.vertical-menu) {
+  display: inline-block;
+  max-width: 160px;
+  min-width: 160px;
+  height: 100vh;
+  padding-left: 4px;
+  flex-grow: 0;
+  background-color: blue;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+:host(.vertical-menu>span.icon) {
+  width: 14px;
+  height: 14px;
+}
+
+div {
+  margin-top: 20px;
+}
+
+div button {
+  background-color: azure;
+}
+
+button.horizontal {
+  margin-left: 20px;
+  margin-bottom: 7px;
+}
