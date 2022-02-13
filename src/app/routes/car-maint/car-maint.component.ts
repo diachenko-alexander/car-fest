@@ -51,7 +51,6 @@ export class CarMaintComponent implements OnInit {
       error => {
         this.deleteError = error;
         this.isDeliting = false;
-        this.isDeliting = false;
       });
   }
 

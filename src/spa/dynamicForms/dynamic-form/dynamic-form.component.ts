@@ -10,15 +10,21 @@ import {FieldInput} from '../field-interface';
   styleUrls: ['./dynamic-form.component.css']
 })
 export class DynamicFormComponent implements OnInit, OnChanges {
-  @Input() vm: any;
+  @Input()
+  vm: any;
   // @ts-ignore
-  @Input() vmDefinition: Array<FieldInput>;
+  @Input()
+  vmDefinition: Array<FieldInput>;
   // @ts-ignore
-  @Input() operation: string;
+  @Input()
+  operation: string;
   // @ts-ignore
-  @Input() errorMessage: string;
-  @Output() update: EventEmitter<any> = new EventEmitter();
-  @Output() create: EventEmitter<any> = new EventEmitter();
+  @Input()
+  errorMessage: string;
+  @Output()
+  update: EventEmitter<any> = new EventEmitter();
+  @Output()
+  create: EventEmitter<any> = new EventEmitter();
 
   // @ts-ignore
   form: FormGroup;

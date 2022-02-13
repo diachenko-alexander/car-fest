@@ -18,21 +18,21 @@ export class UserService implements UserApi {
 
   // @ts-ignore
   signIn(email: string, password: string): Observable<any> {
-    // if (email === '123' && password === '123'){
-    //   this.isAuthenticated = true;
-    //   return of({}).pipe(delay(2000));
-    // } else {return throwError('Invalid password'); }
-    return this.http.get<User[]>(this.url).pipe(map((response) => {
-      const arrayFilter: User[] = response.filter((item) =>
-        item.email === email && item.password === password);
-      if (arrayFilter.length !== 0) {
-        this.isAuthenticated = true;
-        // this.dataTransfer = [arrayFilter[0].name];
-        localStorage.setItem('user', JSON.stringify(arrayFilter[0].name));
-      } else {
-        throw new Error('Invalid password');
-      }
-    }));
+    if (email === '123@123.com' && password === '123'){
+      this.isAuthenticated = true;
+      return of({}).pipe(delay(2000));
+    } else {return throwError('Invalid password'); }
+    // return this.http.get<User[]>(this.url).pipe(map((response) => {
+    //   const arrayFilter: User[] = response.filter((item) =>
+    //     item.email === email && item.password === password);
+    //   if (arrayFilter.length !== 0) {
+    //     this.isAuthenticated = true;
+    //     // this.dataTransfer = [arrayFilter[0].name];
+    //     localStorage.setItem('user', JSON.stringify(arrayFilter[0].name));
+    //   } else {
+    //     throw new Error('Invalid password');
+    //   }
+    // }));
 
   }
 

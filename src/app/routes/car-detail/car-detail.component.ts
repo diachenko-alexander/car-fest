@@ -18,7 +18,7 @@ export class CarDetailComponent implements OnInit {
     {key: 'id', type: 'number', isId: true, label: 'Id', required: true},
     {key: 'name', type: 'string', isId: false, label: 'Car name', required: true},
     {key: 'model', type: 'string', isId: false, label: 'Car model', required: true},
-    {key: 'price', type: 'number', isId: false, label: 'Car price value', required: true},
+    {key: 'price', type: 'number', isId: false, label: 'Car price value', required: false},
   ];
   // @ts-ignore
   operation: string; //edit/ read/ create
@@ -35,7 +35,7 @@ export class CarDetailComponent implements OnInit {
       this.car = {id: 0, name: '', price: null};
     } else {
       // @ts-ignore
-      this.appDataService.getCar(+this.route.snapshot.params.id).subscribe((car: Car) => this.car = car[0]);
+      this.appDataService.getCar(+this.route.snapshot.params.id).subscribe((car: Car) => this.car = car);
     }
   }
   createCar(car: Car): void {

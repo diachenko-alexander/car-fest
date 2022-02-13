@@ -7,16 +7,9 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 
 @Injectable()
 export class AppDataService {
-  private CarCollection: Array<Car> = [
-    {id: 1, name: 'Ford', model: 'Focus', price: 4500},
-    {id: 2, name: 'Mazda', model: '626', price: 8000},
-    {id: 3, name: 'Chery', model: 'QQ', price: 4000},
-    {id: 4, name: 'Audi', model: 'A6', price: 15000},
-    {id: 5, name: 'BMW', model: 'X5', price: 20000},
-    {id: 6, name: 'Fiat', model: 'Doblo', price: 3000},
-  ];
+  private CarCollection: Array<Car> = [];
 
-  private url = 'http://localhost:3000/cars';
+  private url = 'https://localhost:5001/api/Cars';
 
   constructor(public userService: UserService, public http: HttpClient) {
   }
@@ -33,8 +26,8 @@ export class AppDataService {
     // const car = this.CarCollection.find(item => item.id = id);
     // @ts-ignore
     // return of(car);
-    return this.http.get<Car[]>(this.url).pipe(map(response => {
-      return response.filter((itemCar: Car) => itemCar.id === id);
+    return this.http.get<Car[]>(this.url + '/' + id).pipe(map(response => {
+      return response;
     }), catchError(() => throwError('Server error')));
   }
 
@@ -42,7 +35,7 @@ export class AppDataService {
     // return of({}).pipe(delay(2000), map(() => this.CarCollection.splice(this.CarCollection.findIndex(item => item.id = id), 1)));
     return this.http.delete(this.url + '/' + id).pipe(map((response) => {
       return response;
-    }), delay(1200));
+    }));
   }
 
   createCar(newCar: Car): Observable<any> {
@@ -66,6 +59,26 @@ export class AppDataService {
     // return of(car).pipe(delay(1200));
     return this.http.put(this.url + '/' + CarForUpdating.id, CarForUpdating).pipe(map((response) => {
       return response;
-    }), delay(1000));
+    }));
   }
+
+
+// JSON DB LOGIC
+
+  // private CarCollection: Array<Car> = [
+  //   {id: 1, name: 'Ford', model: 'Focus', price: 4500},
+  //   {id: 2, name: 'Mazda', model: '626', price: 8000},
+  //   {id: 3, name: 'Chery', model: 'QQ', price: 4000},
+  //   {id: 4, name: 'Audi', model: 'A6', price: 15000},
+  //   {id: 5, name: 'BMW', model: 'X5', price: 20000},
+  //   {id: 6, name: 'Fiat', model: 'Doblo', price: 3000},
+  // ];
+  // getCars(): Observable<Car[]> {
+  //   // return of(this.CarCollection);
+  //   return this.http.get<Car[]>(this.url).pipe(map(response => {
+  //     this.CarCollection = response;
+  //     return this.CarCollection;
+  //   }), catchError(() => throwError('Server error')));
+  // }
+
 }
