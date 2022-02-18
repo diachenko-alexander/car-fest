@@ -20,6 +20,7 @@
 
 button.btn-primary {
   float: right;
+  margin-top: 10px;
 }
 
 span>img {
