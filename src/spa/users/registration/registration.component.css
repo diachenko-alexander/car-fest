@@ -10,7 +10,7 @@
 }
 
 .register-form {
-  min-width: 290px;
+  min-width: 600px;
   background-color: rgb(194, 204, 207);
   opacity: 0.9;
   padding: 20px;
@@ -20,6 +20,7 @@
 
 button.btn-primary {
   float: right;
+  margin-top: 10px;
 }
 
 span>img {
