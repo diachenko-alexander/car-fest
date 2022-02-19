@@ -7,8 +7,10 @@
 
       <input id="firstName" type="text" class="form-control" formControlName="firstName" required />
 
-      <div *ngIf="formErrors.firstName" class="alert alert-danger">
-        {{formErrors.firstName}}
+      <div *ngIf="formErrors.firstName.length > 0" class="alert alert-danger">
+        <ul>
+          <li *ngFor="let item of formErrors.firstName">{{item}}</li>
+        </ul>
       </div>
     </div>
 
@@ -17,8 +19,10 @@
 
       <input id="lastName" type="text" class="form-control" formControlName="lastName" required />
 
-      <div *ngIf="formErrors.lastName" class="alert alert-danger">
-        {{formErrors.lastName}}
+      <div *ngIf="formErrors.lastName.length > 0" class="alert alert-danger">
+        <ul>
+          <li *ngFor="let item of formErrors.lastName">{{item}}</li>
+        </ul>
       </div>
     </div>
 
@@ -27,8 +31,10 @@
 
       <input id="email" type="text" class="form-control" formControlName="email" required />
 
-      <div *ngIf="formErrors.lastName" class="alert alert-danger">
-        {{formErrors.email}}
+      <div *ngIf="formErrors.email.length > 0" class="alert alert-danger">
+        <ul>
+          <li *ngFor="let item of formErrors.email">{{item}}</li>
+        </ul>
       </div>
     </div>
 
@@ -37,8 +43,11 @@
 
       <input id="password" type="password" class="form-control" formControlName="password" required />
 
-      <div *ngIf="formErrors.password" class="alert alert-danger">
-        {{formErrors.password}}
+      <div *ngIf="formErrors.password.length > 0" class="alert alert-danger">
+        <ul>
+          <li *ngFor="let item of formErrors.password">{{item}}</li>
+        </ul>
+
       </div>
     </div>
 
@@ -47,42 +56,17 @@
 
       <input id="confirmPassword" type="password" class="form-control" formControlName="confirmPassword" required />
 
-      <div *ngIf="formErrors.confirmPassword" class="alert alert-danger">
-        {{formErrors.confirmPassword}}
+      <div *ngIf="formErrors.confirmPassword.length > 0" class="alert alert-danger">
+        <ul>
+          <li *ngFor="let item of formErrors.confirmPassword">{{item}}</li>
+        </ul>
       </div>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">Submit</button>
+    <div *ngIf="registering">
+      <span><img src='../../../assets/imgs/loaderIn.gif'></span>
+      <span class='message'>Register account ...</span>
+    </div>
   </form>
 
 </div>
-
-<!--OLD-->
-<!--  <h4>Register for new account</h4>-->
-<!--  <form novalidate (ngSubmit)="onSubmit(registerForm)" #registerForm='ngForm'>-->
-<!--    <div class='form-group'>-->
-<!--      <input type='text' autocomplete="off" name='name' required placeholder="User name" ngModel #name='ngModel' class='form-control'>-->
-<!--      <div class="alert alert-danger" [hidden]='name.valid || name.pristine'>Please enter your name</div>-->
-<!--    </div>-->
-<!--    <div class='form-group'>-->
-<!--      <input type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" autocomplete="off" name='email' required placeholder="User Email" ngModel #email='ngModel' class='form-control'>-->
-<!--      <div class="alert alert-danger" [hidden]='email.valid || email.pristine'>Please enter your email</div>-->
-<!--    </div>-->
-<!--    <div class='form-group'>-->
-<!--      <input type='password' autocomplete="off" name='password' required ngModel #password='ngModel' placeholder="Password" class='form-control'>-->
-<!--      <div class="alert alert-danger" [hidden]='password.valid || password.pristine'>Password is required</div>-->
-<!--    </div>-->
-<!--&lt;!&ndash;    <div class='alert alert-danger' *ngIf="formError">{{formError}}</div>&ndash;&gt;-->
-<!--    <div *ngIf="!registering && !hasAdded">-->
-<!--      <button routerLink='/sign-in' class='btn btn-danger'>Cancel</button>-->
-<!--      <button [disabled]='registerForm.invalid' type='submit' class='btn btn-primary'>Register</button>-->
-<!--    </div>-->
-<!--    <div *ngIf="registering && !hasAdded">-->
-<!--      <span class='message'>Registering new user ...</span>-->
-<!--      <span><img src='../../../assets/imgs/loaderIn.gif'></span>-->
-<!--    </div>-->
-<!--    <div *ngIf="hasAdded">-->
-<!--      <span class='message'>New user has added to database</span>-->
-
-<!--    </div>-->
-
-<!--  </form>-->

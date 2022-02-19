@@ -4,7 +4,12 @@ import {UserService} from '../../../app/services/user.service';
 import {Router} from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {User} from '../../services/user.interface';
-import {lowerCaseLetterValidator, upperCaseLetterValidator,nonAlphanumericCharacterValidator} from '../../validators/validators';
+import {
+  lowerCaseLetterValidator,
+  upperCaseLetterValidator,
+  nonAlphanumericCharacterValidator,
+  checkPasswords
+} from '../../validators/validators';
 
 @Component({
   selector: 'spa-registration',
@@ -15,13 +20,14 @@ import {lowerCaseLetterValidator, upperCaseLetterValidator,nonAlphanumericCharac
 export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   user: User = new User();
+  registering = false;
 
   formErrors = {
-    'firstName': '',
-    'lastName': '',
-    'email': '',
-    'password': '',
-    'confirmPassword': '',
+    firstName: [] as string[] ,
+    lastName: [] as string[],
+    email: [] as string[],
+    password: [] as string[],
+    confirmPassword: [] as string[],
 
   };
 
@@ -46,6 +52,7 @@ export class RegistrationComponent implements OnInit {
     },
     confirmPassword: {
       required: 'Required field.',
+      checkPasswords: 'Passwords must be same',
     }
   };
 
@@ -77,7 +84,8 @@ export class RegistrationComponent implements OnInit {
       confirmPassword: [this.user.confirmPassword, [
         Validators.required,
       ]]
-    });
+    }, {validators: checkPasswords('password', 'confirmPassword')});
+
     this.registrationForm.valueChanges
       .subscribe(data => this.onValueChange(data));
 
@@ -92,44 +100,32 @@ export class RegistrationComponent implements OnInit {
      // tslint:disable-next-line:forin
     for (let field in this.formErrors){
       // @ts-ignore
-      this.formErrors[field] = '';
+      this.formErrors[field] = [] as string[];
       let control = form.get(field);
 
-      if (control && control.dirty && !control.valid){
-        // @ts-ignore
-        let message = this.validatioMessages[field];
-        for (let key in control.errors) {
+      if (control && control.dirty) {
+        if (!control.valid) {
           // @ts-ignore
-          this.formErrors[field] += message[key] + ' ';
+          let message = this.validatioMessages[field];
+          for (let key in control.errors) {
+            // @ts-ignore
+              this.formErrors[field].push(message[key]);
+          }
         }
       }
     }
    }
 
    onSubmit(registerForm: FormGroup): void {
-    this.userService.registerUser(registerForm.value).subscribe(() => {
-      this.router.navigate(['/sign-in']);
-    }, error => {
-      console.log(error.errors);
-    })
-   }
+    if (registerForm.valid){
+      this.registering = true;
+      this.userService.registerUser(registerForm.value).subscribe(() => {
+        this.router.navigate(['/sign-in']);
+      }, error => {
+        console.log(error);
+      })
+    }
+    }
 
-
-   //OLD
-  // registering = false;
-  // hasAdded = false;
-  // constructor(private router: Router, private userService: UserService) { }
-  //
-  // ngOnInit(): void {
-  // }
-  // onSubmit(registerForm: NgForm): void {
-  //   this.registering = true;
-  //   this.userService.registerUser(registerForm.value).subscribe(() => {
-  //     this.hasAdded = true;
-  //     this.router.navigate(['/sign-in']);
-  //   }, error => {
-  //     console.log(error.error.errors);
-  //   });
-  // }
 
 }

@@ -1,4 +1,5 @@
 import {AbstractControl, ValidatorFn} from '@angular/forms';
+import {group} from '@angular/animations';
 
 export function lowerCaseLetterValidator (control: AbstractControl): {[key: string]: any} {
   let regex = /[a-z]/;
@@ -36,5 +37,20 @@ export function nonAlphanumericCharacterValidator (control: AbstractControl): {[
     return null;
   } else {
     return {'nonAlphanumericCharacterValidator': {value}}
+  }
+}
+
+export function checkPasswords(controlName: string, matchingControlName: string){
+  return (formGroup: AbstractControl) => {
+    const control = formGroup.get(controlName);
+    const matchingControl = formGroup.get(matchingControlName);
+    if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+      return;
+    }
+    if (control.value !== matchingControl.value) {
+      matchingControl.setErrors({ checkPasswords: true });
+    } else {
+      matchingControl.setErrors(null);
+    }
   }
 }
