@@ -2,38 +2,37 @@ import {Injectable} from '@angular/core';
 import {UserApi} from '../../spa/users/user-api';
 import {Router} from '@angular/router';
 import {Observable, of, throwError} from 'rxjs';
-import {delay, map} from 'rxjs/operators';
-import {HttpClient} from '@angular/common/http';
-import {User, RegistrationResponseDto} from '../../spa/services/user.interface';
+import {catchError, delay, map} from 'rxjs/operators';
+import {HttpClient, HttpBackend} from '@angular/common/http';
+import {User} from '../../spa/services/user.interface';
+import {RegistrationResponseDto} from '../../spa/interfaces/RegistrationResponseDto.interface';
+import {AuthResponseDto} from '../../spa/interfaces/AuthResponseDto.interface';
+import {UserForAuthenticationDto} from '../../spa/interfaces/UserForAuthenticationDto.interface';
+import {AuthService} from './auth.service';
 
 @Injectable()
 export class UserService implements UserApi {
-  isAuthenticated = false;
-  // dataTransfer: Array<any>;
-  private url = 'https://localhost:5001/api/accounts/registration';
+  isAuthenticated = this.authService.isAuthenticated();
+  dataTransfer: Array<any>;
+  private url = 'https://localhost:5001/api/accounts';
+  public http: HttpClient;
 
-  constructor(public router: Router, public http: HttpClient) {
-    // this.dataTransfer = null;
+  constructor(public router: Router, public handler: HttpBackend, public authService: AuthService) {
+    this.dataTransfer = null;
+    this.http = new HttpClient(handler);
   }
 
-  // @ts-ignore
   signIn(email: string, password: string): Observable<any> {
-    if (email === '123@123.com' && password === '123'){
-      this.isAuthenticated = true;
-      return of({}).pipe(delay(2000));
-    } else {return throwError('Invalid password'); }
-    // return this.http.get<User[]>(this.url).pipe(map((response) => {
-    //   const arrayFilter: User[] = response.filter((item) =>
-    //     item.email === email && item.password === password);
-    //   if (arrayFilter.length !== 0) {
-    //     this.isAuthenticated = true;
-    //     // this.dataTransfer = [arrayFilter[0].name];
-    //     localStorage.setItem('user', JSON.stringify(arrayFilter[0].name));
-    //   } else {
-    //     throw new Error('Invalid password');
-    //   }
-    // }));
-
+    return this.http.post<AuthResponseDto>(this.url + '/Login', {
+      email: email,
+      password: password
+    }).pipe(map((response) => {
+      if (response.isAuthSuccessful && response.errorMessage == null) {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user', response.userFirstName)
+        this.isAuthenticated = true;
+      }
+    }));
   }
 
   // @ts-ignore
@@ -45,7 +44,7 @@ export class UserService implements UserApi {
   }
 
   registerUser(registerform: User): Observable<any> {
-    return this.http.post<RegistrationResponseDto>(this.url, {
+    return this.http.post<RegistrationResponseDto>(this.url + '/registration', {
       firstName: registerform.firstName,
       lastName: registerform.lastName,
       email: registerform.email,

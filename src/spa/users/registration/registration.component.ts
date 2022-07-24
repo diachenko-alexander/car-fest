@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {visibility} from '../../services/animations';
 import {UserService} from '../../../app/services/user.service';
 import {Router} from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {User} from '../../services/user.interface';
 import {
   lowerCaseLetterValidator,
@@ -10,6 +10,7 @@ import {
   nonAlphanumericCharacterValidator,
   checkPasswords
 } from '../../validators/validators';
+import {validationMessages} from '../../validators/validationMessages';
 
 @Component({
   selector: 'spa-registration',
@@ -23,7 +24,7 @@ export class RegistrationComponent implements OnInit {
   registering = false;
 
   formErrors = {
-    firstName: [] as string[] ,
+    firstName: [] as string[],
     lastName: [] as string[],
     email: [] as string[],
     password: [] as string[],
@@ -31,38 +32,14 @@ export class RegistrationComponent implements OnInit {
 
   };
 
-  validatioMessages = {
-    firstName: {
-      required: 'Required field.',
-    },
-    lastName: {
-      required: 'Required field.',
-    },
-    email: {
-      required: 'Required field.',
-      pattern: 'Incorect email format.',
-    },
-    password: {
-      required: 'Required field.',
-      minlength: 'Passwords must be at least 6 characters.',
-      lowerCaseLetterValidator: 'Passwords must have at least one lowercase letter',
-      upperCaseLetterValidator: 'Passwords must have at least one uppercase letter',
-      nonAlphanumericCharacterValidator: 'Passwords must have at least one non alphanumeric character.',
+  constructor(private router: Router, private userService: UserService, private fb: FormBuilder) {
+  }
 
-    },
-    confirmPassword: {
-      required: 'Required field.',
-      checkPasswords: 'Passwords must be same',
-    }
-  };
+  ngOnInit(): void {
+    this.buildForm();
+  }
 
-  constructor(private router: Router, private userService: UserService, private fb: FormBuilder) { }
-
-   ngOnInit(): void {
-     this.buildForm();
-   }
-
-   buildForm(): void {
+  buildForm(): void {
     this.registrationForm = this.fb.group({
       firstName: [this.user.firstName, [
         Validators.required,
@@ -89,16 +66,16 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.valueChanges
       .subscribe(data => this.onValueChange(data));
 
-   }
+  }
 
-   onValueChange(data: any): void {
+  onValueChange(data: any): void {
     if (!this.registrationForm) {
       return;
     }
     let form = this.registrationForm;
 
-     // tslint:disable-next-line:forin
-    for (let field in this.formErrors){
+    // tslint:disable-next-line:forin
+    for (let field in this.formErrors) {
       // @ts-ignore
       this.formErrors[field] = [] as string[];
       let control = form.get(field);
@@ -106,26 +83,26 @@ export class RegistrationComponent implements OnInit {
       if (control && control.dirty) {
         if (!control.valid) {
           // @ts-ignore
-          let message = this.validatioMessages[field];
+          let message = validationMessages[field];
           for (let key in control.errors) {
             // @ts-ignore
-              this.formErrors[field].push(message[key]);
+            this.formErrors[field].push(message[key]);
           }
         }
       }
     }
-   }
+  }
 
-   onSubmit(registerForm: FormGroup): void {
-    if (registerForm.valid){
+  onSubmit(registerForm: FormGroup): void {
+    if (registerForm.valid) {
       this.registering = true;
       this.userService.registerUser(registerForm.value).subscribe(() => {
         this.router.navigate(['/sign-in']);
       }, error => {
         console.log(error);
-      })
+      });
     }
-    }
+  }
 
 
 }
