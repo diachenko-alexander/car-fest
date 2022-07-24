@@ -18,14 +18,14 @@ export class IconBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.showLoader = false;
-    this.userInfo = JSON.parse(localStorage.getItem('user'));
+    this.userInfo = localStorage.getItem('user');
   }
 
   signOut(): void {
     this.showLoader = true;
     setTimeout(() => {
       this.userApi.signOut();
-    }, 2000);
+    });
     console.log('Sign out');
   }
 

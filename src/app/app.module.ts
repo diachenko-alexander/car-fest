@@ -16,7 +16,10 @@ import {AuthGuard} from './services/auth-guard.service';
 import {AppDataService} from './services/app-data.service';
 import { CarPanelComponent } from './panels/car-panel/car-panel.component';
 import { ImagePanelComponent } from './panels/image-panel/image-panel.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {TokenInterceptor} from './interceptors/token.interceptor';
+import {AuthService} from './services/auth.service';
+import {ErrorInterceptor} from './interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,15 @@ import {HttpClientModule} from '@angular/common/http';
     SpaModule,
     HttpClientModule
   ],
-  providers: [UserService, {provide: UserApi, useExisting: UserService}, AuthGuard, AppDataService],
+  providers: [
+    UserService,
+    {provide: UserApi, useExisting: UserService},
+    AuthGuard,
+    AppDataService,
+    AuthService,
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -5,8 +5,3 @@ export class User {
   password: string;
   confirmPassword: string;
 }
-
-export interface RegistrationResponseDto {
-  isSuccessfulRegistration: boolean;
-  errors: string[];
-}

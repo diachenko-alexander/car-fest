@@ -22,7 +22,7 @@ li {
   height: 100vh;
   padding-left: 4px;
   flex-grow: 0;
-  background-color: blue;
+  background-color: #5a9562;
   overflow-x: hidden;
   overflow-y: auto;
 }

@@ -1,18 +1,35 @@
 <div class="sign-in-form" @visibility>
   <h4>Sign in</h4>
-  <form novalidate (ngSubmit)="onSubmit(signInForm)" #signInForm='ngForm'>
-    <div class='form-group'>
-      <input type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" autocomplete="off" name='email' required placeholder="User email" ngModel #email='ngModel' class='form-control'>
-      <div class="alert alert-danger" [hidden]='email.valid || email.pristine'>Please enter your email</div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+    <div class="form-group">
+      <label for="email">Email</label>
+
+      <input id="email" type="text" class="form-control" formControlName="email" required/>
+
+      <div *ngIf="formErrors.email.length > 0" class="alert alert-danger">
+        <ul>
+          <li *ngFor="let item of formErrors.email">{{item}}</li>
+        </ul>
+      </div>
     </div>
-    <div class='form-group'>
-      <input type='password' autocomplete="off" name='password' required ngModel #password='ngModel' placeholder="Password" class='form-control'>
-      <div class="alert alert-danger" [hidden]='password.valid || password.pristine'>Password is required</div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+
+      <input id="password" type="password" class="form-control" formControlName="password" required/>
+
+      <div *ngIf="formErrors.password.length > 0" class="alert alert-danger">
+        <ul>
+          <li *ngFor="let item of formErrors.password">{{item}}</li>
+        </ul>
+
+      </div>
     </div>
-    <div class='alert alert-danger' *ngIf="formError">{{formError}}</div>
+
+<!--    <div class='alert alert-danger' *ngIf="formError">{{formError}}</div>-->
     <div *ngIf="!submitting">
       <button routerLink='/register' class='btn btn-success'>Register</button>
-      <button [disabled]='signInForm.invalid' type='submit' class='btn btn-primary'>Sign in</button>
+      <button [disabled]='loginForm.invalid' type='submit' class='btn btn-primary'>Sign in</button>
     </div>
     <div *ngIf="submitting">
       <span><img src='../../../assets/imgs/loaderIn.gif'></span>
