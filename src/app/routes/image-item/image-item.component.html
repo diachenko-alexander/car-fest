@@ -1,0 +1,27 @@
+<div [ngClass]="imageClass" *ngIf="imageToShow != null">
+  <img [src]="imageToShow"
+       alt="Place image title"
+       *ngIf="!isImageLoading; else noImageFound">
+  <div [ngClass]="viewDeleteButtonsClass">
+    <div *ngIf="viewDeleteButtons && imageId != deleteId">
+      <button class="btn btn-sm btn-danger" (click)="deleteCarQuestion(imageId)">Delete</button>
+      <button [disabled]="isMainImage" class="btn btn-sm btn-success" (click)="onSetAsMainImage()">Set as main image</button>
+    </div>
+    <div *ngIf="viewDeleteButtons && imageId === deleteId && !isDeliting">
+      <button class="btn btn-sm btn-light" (click)="cancelDelete()">Cancel</button>
+      <button class="btn btn-sm btn-danger" (click)="deleteImage(imageId)">Delete</button>
+      <p *ngIf="deleteError">{{deleteError}}</p>
+      Delete this image?
+    </div>
+    <div *ngIf="viewDeleteButtons && imageId === deleteId && isDeliting">
+      Deliting ...
+      <img src="../../../assets/imgs/deleteLoader.gif" alt="">
+    </div>
+  </div>
+
+
+</div>
+
+<ng-template #noImageFound>
+  <img src="./assets/imgs/logo.png" alt="Fallbackimage">
+</ng-template>

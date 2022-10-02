@@ -16,6 +16,7 @@ export class CarMaintComponent implements OnInit {
   // @ts-ignore
   deleteId: number;
   isDeliting = false;
+
   constructor(public router: Router, public appDataService: AppDataService) {
     appDataService.getCars().subscribe((data) => {this.CarList = data; });
   }
@@ -37,11 +38,13 @@ export class CarMaintComponent implements OnInit {
     this.deleteError = null;
     this.deleteId = id;
   }
+
   cancelDelete(): void {
     this.isDeliting = false;
     // @ts-ignore
     this.deleteId = null;
   }
+
   deleteCar(id: number): void {
     this.isDeliting = true;
     this.appDataService.deleteCar(id).subscribe(c => {

@@ -1,0 +1,38 @@
+.image {
+  height: 300px;
+  max-width: 500px;
+  margin: 10px;
+  /*overflow: hidden;*/
+  border: 2px solid green;
+  position: relative;
+}
+
+img {
+  max-width:100%;
+  max-height:100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.buttons {
+  display: none;
+}
+
+.buttons button {
+  margin: 5px;
+}
+
+.visible {
+  display: block;
+  height: 40px;
+  width: 500px;
+  z-index: 1;
+  margin: 5px;
+  position: absolute;
+  bottom: 5px;
+  color: red;
+}
+
+.mainImage {
+  border: 4px solid red;
+}

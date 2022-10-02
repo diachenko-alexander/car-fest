@@ -1,0 +1,11 @@
+.imageCards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.imageCard {
+  /*height: auto;*/
+  /*width: 500px;*/
+  /*margin: 10px;*/
+  /*overflow: hidden;*/
+}

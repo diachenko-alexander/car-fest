@@ -24,6 +24,10 @@ export class CarDetailComponent implements OnInit {
   operation: string; //edit/ read/ create
   // @ts-ignore
   errorMessage: string;
+  carId = +this.route.snapshot.params.id;
+  uploadImage: boolean;
+  viewImages: boolean;
+  viewDeleteButtons: boolean;
 
   constructor(public router: Router, public route: ActivatedRoute, public appDataService: AppDataService) {
   }
@@ -33,9 +37,20 @@ export class CarDetailComponent implements OnInit {
     if (this.operation === 'create') {
       // @ts-ignore
       this.car = {id: 0, name: '', price: null};
-    } else {
+      this.uploadImage = false;
+      this.viewImages = false;
+      this.viewDeleteButtons = false;
+    } else if (this.operation === 'edit') {
       // @ts-ignore
       this.appDataService.getCar(+this.route.snapshot.params.id).subscribe((car: Car) => this.car = car);
+      this.uploadImage = true;
+      this.viewImages = true;
+      this.viewDeleteButtons = true;
+    } else if (this.operation === 'details'){
+      this.appDataService.getCar(+this.route.snapshot.params.id).subscribe((car: Car) => this.car = car);
+      this.uploadImage = false;
+      this.viewImages = true;
+      this.viewDeleteButtons = false;
     }
   }
   createCar(car: Car): void {
