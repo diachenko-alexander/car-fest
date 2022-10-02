@@ -20,6 +20,10 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TokenInterceptor} from './interceptors/token.interceptor';
 import {AuthService} from './services/auth.service';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
+import {UploadImagesComponent} from './routes/upload-images/upload-images.component';
+import { ViewImagesComponent } from './routes/view-images/view-images.component';
+import { CarImagesComponent } from './routes/car-images/car-images.component';
+import { ImageItemComponent } from './routes/image-item/image-item.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import {ErrorInterceptor} from './interceptors/error.interceptor';
     CarMaintComponent,
     AuthenticatedComponent,
     CarPanelComponent,
-    ImagePanelComponent
+    ImagePanelComponent,
+    UploadImagesComponent,
+    ViewImagesComponent,
+    CarImagesComponent,
+    ImageItemComponent
   ],
   imports: [
     BrowserModule,

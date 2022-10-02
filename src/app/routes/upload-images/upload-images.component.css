@@ -1,0 +1,16 @@
+.preview {
+  margin: 5px;
+  max-width: 200px;
+}
+.row {
+  display: flex;
+  /*flex-wrap: wrap;*/
+  align-items: stretch;
+  padding-top: 10px;
+}
+
+.buttons {
+  width: auto;
+  padding: 0;
+  margin-left: 12px;
+}

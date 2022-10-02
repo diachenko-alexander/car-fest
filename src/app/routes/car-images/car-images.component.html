@@ -1,0 +1,12 @@
+<div class="imageCards">
+  <div class="imageCard" *ngFor="let imageId of carImagesIds">
+    <app-image-item
+      [carId]="carId"
+      [imageId]="imageId"
+      [viewDeleteButtons]="viewDeleteButtons"
+      [mainImageId]="mainImageId"
+      (setAsMainImage)="setAsMainImage($event)"
+    ></app-image-item>
+  </div>
+</div>
+

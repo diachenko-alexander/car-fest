@@ -1,6 +1,10 @@
 <div @visibility *ngIf="car">
   <spa-dynamic-form [vm]="car" [vmDefinition]="carDefinitionInput"
                     [operation]="operation" [errorMessage]="errorMessage" (update)="updateCar($event)"
-                    (create)="createCar($event)"></spa-dynamic-form>
+                    (create)="createCar($event)">
+  </spa-dynamic-form>
+  <app-upload-images *ngIf="uploadImage" [carId]="carId"></app-upload-images>
+  <app-car-images *ngIf="viewImages" [carId]="carId" [viewDeleteButtons] = "viewDeleteButtons"></app-car-images>
 </div>
+
 
