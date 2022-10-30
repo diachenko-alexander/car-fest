@@ -6,6 +6,7 @@
 
 <div [ngClass]='{"forSmall": !showIcons}' *ngIf="spaConfigService.showUserControls">
   <span>Hello {{userInfo}}</span>
+  <button class="btn btn-sm btn-success" (click)="userInfoButton()">User Info</button>
   <button *ngIf="!showLoader" class="btn btn-sm btn-warning" (click)="signOut()">Sign out</button>
   <img src="../../assets/imgs/loaderOut.gif" *ngIf="showLoader" alt="">
 </div>

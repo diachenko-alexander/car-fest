@@ -38,3 +38,7 @@ button[type=submit] {
 input {
   margin-top: 5px;
 }
+
+.alert-danger {
+  margin-top: 10px;
+}

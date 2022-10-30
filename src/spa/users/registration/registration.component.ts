@@ -104,5 +104,8 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
+  onCancel (): void {
+    this.router.navigate(['/sign-in']);
+  }
 
 }

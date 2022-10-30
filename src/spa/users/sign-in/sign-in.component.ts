@@ -23,6 +23,7 @@ export class SignInComponent implements OnInit {
   formErrors = {
     email: [] as string [],
     password: [] as string [],
+    loginError: '',
   };
 
   constructor(public userApi: UserApi, public userService: UserService, public router: Router, private fb: FormBuilder) {
@@ -80,6 +81,7 @@ export class SignInComponent implements OnInit {
         },
         (error) => {
           this.submitting = false;
+          this.formErrors.loginError = 'Invalid user name or password';
           console.error(error);
           // this.formError = error.error.errorMessage;
         });

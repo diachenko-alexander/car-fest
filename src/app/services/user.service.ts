@@ -9,12 +9,14 @@ import {RegistrationResponseDto} from '../../spa/interfaces/RegistrationResponse
 import {AuthResponseDto} from '../../spa/interfaces/AuthResponseDto.interface';
 import {UserForAuthenticationDto} from '../../spa/interfaces/UserForAuthenticationDto.interface';
 import {AuthService} from './auth.service';
+import {UserInfo} from '../../spa/interfaces/UserInfoResponseDto.interface';
+
 
 @Injectable()
 export class UserService implements UserApi {
   isAuthenticated = this.authService.isAuthenticated();
   dataTransfer: Array<any>;
-  private url = 'https://localhost:5001/api/accounts';
+  private url = 'https://localhost:5001/api';
   public http: HttpClient;
 
   constructor(public router: Router, public handler: HttpBackend, public authService: AuthService) {
@@ -23,10 +25,13 @@ export class UserService implements UserApi {
   }
 
   signIn(email: string, password: string): Observable<any> {
-    return this.http.post<AuthResponseDto>(this.url + '/Login', {
+    return this.http.post<AuthResponseDto>(this.url + '/accounts/Login', {
       email: email,
       password: password
     }).pipe(map((response) => {
+      if (!response.isAuthSuccessful && response.errorMessage.length > 0) {
+        throw new Error(response.errorMessage)
+      }
       if (response.isAuthSuccessful && response.errorMessage == null) {
         localStorage.setItem('token', response.token);
         localStorage.setItem('user', response.userFirstName)
@@ -44,7 +49,7 @@ export class UserService implements UserApi {
   }
 
   registerUser(registerform: User): Observable<any> {
-    return this.http.post<RegistrationResponseDto>(this.url + '/registration', {
+    return this.http.post<RegistrationResponseDto>(this.url + '/accounts/registration', {
       firstName: registerform.firstName,
       lastName: registerform.lastName,
       email: registerform.email,

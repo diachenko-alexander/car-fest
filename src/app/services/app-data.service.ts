@@ -4,6 +4,7 @@ import {Car} from './car-interface';
 import {Observable, of, throwError} from 'rxjs';
 import {delay, map, catchError} from 'rxjs/operators';
 import {HttpClient, HttpEvent, HttpResponse, HttpRequest, HttpHeaders} from '@angular/common/http';
+import {UserInfo} from '../../spa/interfaces/UserInfoResponseDto.interface';
 
 @Injectable()
 export class AppDataService {
@@ -82,6 +83,19 @@ export class AppDataService {
 
   setMainImage (carId: number, imageId: number): Observable<any> {
     return this.http.get(`${this.url + this.imagePrefix}/set-main-image?carId=${carId}&imageId=${imageId}`);
+  }
+
+  getUserInfo (): Observable<UserInfo> {
+   return this.http.get<UserInfo>(this.url + 'users/UserInfo').pipe(map(response => {
+      return response;
+    }), catchError(() => throwError('Error in get user dats')));
+  }
+
+  changeUserPassword (oldPassword: string, newPassword: string): Observable<any> {
+    return this.http.post(this.url + 'users/ChangeUserPassword', {
+      oldPassword,
+      newPassword
+    });
   }
 
 
