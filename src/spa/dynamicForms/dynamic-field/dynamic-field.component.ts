@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {UntypedFormGroup} from '@angular/forms';
 import {FieldInput} from '../field-interface';
 
 @Component({
@@ -12,7 +12,7 @@ export class DynamicFieldComponent implements OnInit {
 // @ts-ignore
   @Input() field!: FieldInput;
   // @ts-ignore
-  @Input() form!: FormGroup;
+  @Input() form!: UntypedFormGroup;
   // @ts-ignore
   @Input() operation!: string;
   // @ts-ignore

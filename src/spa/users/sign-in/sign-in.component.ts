@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserApi} from '../user-api';
 import {UserService} from '../../../app/services/user.service';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
 import {visibility} from '../../services/animations';
 import {User} from '../../services/user.interface';
 import {validationMessages} from '../../validators/validationMessages';
@@ -15,7 +15,7 @@ import {validationMessages} from '../../validators/validationMessages';
   animations: [visibility]
 })
 export class SignInComponent implements OnInit {
-  loginForm: FormGroup;
+  loginForm: UntypedFormGroup;
   user: User = new User();
   submitting = false;
   // @ts-ignore
@@ -26,7 +26,7 @@ export class SignInComponent implements OnInit {
     loginError: '',
   };
 
-  constructor(public userApi: UserApi, public userService: UserService, public router: Router, private fb: FormBuilder) {
+  constructor(public userApi: UserApi, public userService: UserService, public router: Router, private fb: UntypedFormBuilder) {
   }
 
   ngOnInit(): void {
@@ -71,7 +71,7 @@ export class SignInComponent implements OnInit {
     }
   }
 
-  onSubmit(signInForm: FormGroup): void {
+  onSubmit(signInForm: UntypedFormGroup): void {
     if (signInForm.valid) {
       this.submitting = true;
       // @ts-ignore

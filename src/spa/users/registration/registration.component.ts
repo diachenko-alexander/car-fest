@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {visibility} from '../../services/animations';
 import {UserService} from '../../../app/services/user.service';
 import {Router} from '@angular/router';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {UntypedFormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
 import {User} from '../../services/user.interface';
 import {
   lowerCaseLetterValidator,
@@ -19,7 +19,7 @@ import {validationMessages} from '../../validators/validationMessages';
   animations: [visibility]
 })
 export class RegistrationComponent implements OnInit {
-  registrationForm: FormGroup;
+  registrationForm: UntypedFormGroup;
   user: User = new User();
   registering = false;
 
@@ -32,7 +32,7 @@ export class RegistrationComponent implements OnInit {
 
   };
 
-  constructor(private router: Router, private userService: UserService, private fb: FormBuilder) {
+  constructor(private router: Router, private userService: UserService, private fb: UntypedFormBuilder) {
   }
 
   ngOnInit(): void {
@@ -93,7 +93,7 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  onSubmit(registerForm: FormGroup): void {
+  onSubmit(registerForm: UntypedFormGroup): void {
     if (registerForm.valid) {
       this.registering = true;
       this.userService.registerUser(registerForm.value).subscribe(() => {

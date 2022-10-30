@@ -1,6 +1,6 @@
 import {Component, OnInit, EventEmitter, Input, OnChanges, SimpleChange, Output, SimpleChanges} from '@angular/core';
 import {Location} from '@angular/common';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {UntypedFormGroup, UntypedFormControl, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FieldInput} from '../field-interface';
 
@@ -27,7 +27,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
   create: EventEmitter<any> = new EventEmitter();
 
   // @ts-ignore
-  form: FormGroup;
+  form: UntypedFormGroup;
   // @ts-ignore
   status: string;
   submitted = false;
@@ -46,10 +46,10 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     this.vmDefinition.forEach((field => {
       // @ts-ignore
       group[field.key] = field.required ?
-        new FormControl(this.vmCopy[field.key], Validators.required) :
-        new FormControl(this.vmCopy[field.key]);
+        new UntypedFormControl(this.vmCopy[field.key], Validators.required) :
+        new UntypedFormControl(this.vmCopy[field.key]);
     }));
-    this.form = new FormGroup(group);
+    this.form = new UntypedFormGroup(group);
   }
 
   ngOnInit(): void {

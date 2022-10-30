@@ -121,7 +121,6 @@
       }
     }
   },
-  "defaultProject": "car-fest",
   "cli": {
     "analytics": false
   }
