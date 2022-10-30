@@ -29,7 +29,10 @@
 <!--    <div class='alert alert-danger' *ngIf="formError">{{formError}}</div>-->
     <div *ngIf="!submitting">
       <button routerLink='/register' class='btn btn-success'>Register</button>
-      <button [disabled]='loginForm.invalid' type='submit' class='btn btn-primary'>Sign in</button>
+      <button type='submit' class='btn btn-primary'>Sign in</button>
+    </div>
+    <div *ngIf="formErrors.loginError.length > 0" class="alert alert-danger">
+      {{formErrors.loginError}}
     </div>
     <div *ngIf="submitting">
       <span><img src='../../../assets/imgs/loaderIn.gif'></span>

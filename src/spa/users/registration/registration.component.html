@@ -15,7 +15,7 @@
     </div>
 
     <div class="form-group">
-      <label for="firstName">Last name</label>
+      <label for="lastName">Last name</label>
 
       <input id="lastName" type="text" class="form-control" formControlName="lastName" required />
 
@@ -64,6 +64,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">Submit</button>
+    <button type="button" class="btn btn-success" (click)="onCancel()">Cancel</button>
     <div *ngIf="registering">
       <span><img src='../../../assets/imgs/loaderIn.gif'></span>
       <span class='message'>Register account ...</span>

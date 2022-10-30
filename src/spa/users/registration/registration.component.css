@@ -23,6 +23,15 @@ button.btn-primary {
   margin-top: 10px;
 }
 
+button.btn-success {
+  float: left;
+  margin-top: 10px;
+}
+
 span>img {
   margin-left: 5%;
+}
+
+.alert-danger {
+  margin-top: 10px;
 }

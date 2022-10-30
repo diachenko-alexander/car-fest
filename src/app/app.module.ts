@@ -24,6 +24,7 @@ import {UploadImagesComponent} from './routes/upload-images/upload-images.compon
 import { ViewImagesComponent } from './routes/view-images/view-images.component';
 import { CarImagesComponent } from './routes/car-images/car-images.component';
 import { ImageItemComponent } from './routes/image-item/image-item.component';
+import { UserInfoComponent } from './routes/user-info/user-info.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ImageItemComponent } from './routes/image-item/image-item.component';
     UploadImagesComponent,
     ViewImagesComponent,
     CarImagesComponent,
-    ImageItemComponent
+    ImageItemComponent,
+    UserInfoComponent,
   ],
   imports: [
     BrowserModule,
