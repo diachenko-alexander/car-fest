@@ -26,6 +26,9 @@ import { CarImagesComponent } from './routes/car-images/car-images.component';
 import { ImageItemComponent } from './routes/image-item/image-item.component';
 import { UserInfoComponent } from './routes/user-info/user-info.component';
 import {JwtModule} from '@auth0/angular-jwt';
+import { SpaModalComponent } from '../spa/spa-modal/spa-modal.component';
+import {MdbModalService} from 'mdb-angular-ui-kit/modal';
+import {OverlayModule} from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -43,12 +46,14 @@ import {JwtModule} from '@auth0/angular-jwt';
     CarImagesComponent,
     ImageItemComponent,
     UserInfoComponent,
+    SpaModalComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     SpaModule,
     HttpClientModule,
+    OverlayModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -65,6 +70,7 @@ import {JwtModule} from '@auth0/angular-jwt';
     AuthService,
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    MdbModalService,
   ],
   bootstrap: [AppComponent]
 })

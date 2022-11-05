@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UserInfo} from '../../../spa/interfaces/UserInfoResponseDto.interface';
-import {UserService} from '../../services/user.service';
 import {AppDataService} from '../../services/app-data.service';
+import {SpaModalComponent} from '../../../spa/spa-modal/spa-modal.component';
+import {MdbModalRef, MdbModalService} from 'mdb-angular-ui-kit/modal';
 
 @Component({
   selector: 'app-user-info',
@@ -11,10 +12,10 @@ import {AppDataService} from '../../services/app-data.service';
 export class UserInfoComponent implements OnInit {
 
   userInfo: UserInfo = <UserInfo>{};
-  showChangePasswordModalBox = false;
+  modalRef: MdbModalRef<SpaModalComponent> | null = null;
 
 
-  constructor(private appDataService: AppDataService) { }
+  constructor(private appDataService: AppDataService, private modalService: MdbModalService) { }
 
   ngOnInit(): void {
     this.getUserData();
@@ -24,6 +25,12 @@ export class UserInfoComponent implements OnInit {
     this.appDataService.getUserInfo().subscribe((userInfo: UserInfo) => {
      this.userInfo = userInfo;
     });
+  }
+
+  openModal() {
+    this.modalRef = this.modalService.open(SpaModalComponent, {
+      modalClass: 'modal-xl'
+    })
   }
 
   changeUserPassword(): void {
