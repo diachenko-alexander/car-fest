@@ -74,7 +74,7 @@ export class RegistrationComponent implements OnInit {
     }
     let form = this.registrationForm;
 
-    // tslint:disable-next-line:forin
+    // eslint-disable-next-line guard-for-in
     for (let field in this.formErrors) {
       // @ts-ignore
       this.formErrors[field] = [] as string[];

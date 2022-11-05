@@ -2,12 +2,12 @@ import {Directive, Input, OnInit, TemplateRef, ViewContainerRef} from '@angular/
 import {ScreenService} from '../services/screen.service';
 
 @Directive({
-  // tslint:disable-next-line:directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[screenLarge]'
 })
 export class ScreenLargeDirective implements OnInit {
   private hasView = false;
-  // tslint:disable-next-line:ban-types
+  // eslint-disable-next-line @typescript-eslint/ban-types
   constructor(private template: TemplateRef<Object>,
               private screenService: ScreenService,
               private viewContainer: ViewContainerRef) {

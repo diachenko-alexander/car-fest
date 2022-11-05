@@ -18,13 +18,14 @@ import { CarPanelComponent } from './panels/car-panel/car-panel.component';
 import { ImagePanelComponent } from './panels/image-panel/image-panel.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TokenInterceptor} from './interceptors/token.interceptor';
-import {AuthService} from './services/auth.service';
+import {AuthService, tokenGetter} from './services/auth.service';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {UploadImagesComponent} from './routes/upload-images/upload-images.component';
 import { ViewImagesComponent } from './routes/view-images/view-images.component';
 import { CarImagesComponent } from './routes/car-images/car-images.component';
 import { ImageItemComponent } from './routes/image-item/image-item.component';
 import { UserInfoComponent } from './routes/user-info/user-info.component';
+import {JwtModule} from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,14 @@ import { UserInfoComponent } from './routes/user-info/user-info.component';
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     SpaModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost"],
+        disallowedRoutes: [],
+      }
+    })
   ],
   providers: [
     UserService,

@@ -1,4 +1,4 @@
-/* tslint:disable:no-string-literal */
+/* eslint-disable @typescript-eslint/dot-notation */
 import {Component, ElementRef, HostBinding, HostListener, Input, OnInit, Renderer2} from '@angular/core';
 import {MenuItem, MenuService} from '../../services/menu.service';
 import {Router, NavigationEnd} from '@angular/router';

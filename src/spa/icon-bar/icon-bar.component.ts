@@ -4,7 +4,7 @@ import {UserApi} from '../users/user-api';
 import {Router} from '@angular/router';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'icon-bar',
   templateUrl: './icon-bar.component.html',
   styleUrls: ['./icon-bar.component.css']

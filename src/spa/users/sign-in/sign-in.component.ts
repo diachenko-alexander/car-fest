@@ -8,7 +8,7 @@ import {User} from '../../services/user.interface';
 import {validationMessages} from '../../validators/validationMessages';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'spa-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css'],
@@ -52,7 +52,7 @@ export class SignInComponent implements OnInit {
     }
     let form = this.loginForm;
 
-    // tslint:disable-next-line:forin
+    // eslint-disable-next-line guard-for-in
     for (let field in this.formErrors) {
       // @ts-ignore
       this.formErrors[field] = [] as string[];
