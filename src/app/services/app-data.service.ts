@@ -5,6 +5,7 @@ import {Observable, of, throwError} from 'rxjs';
 import {delay, map, catchError} from 'rxjs/operators';
 import {HttpClient, HttpEvent, HttpResponse, HttpRequest, HttpHeaders} from '@angular/common/http';
 import {UserInfo} from '../../spa/interfaces/UserInfoResponseDto.interface';
+import {ChangePasswordDTOInterface} from '../../spa/interfaces/changePasswordDTO.interface';
 
 @Injectable()
 export class AppDataService {
@@ -91,11 +92,13 @@ export class AppDataService {
     }), catchError(() => throwError('Error in get user dats')));
   }
 
-  changeUserPassword (oldPassword: string, newPassword: string): Observable<any> {
+  changeUserPassword (changePasswordDTO: ChangePasswordDTOInterface): Observable<any> {
     return this.http.post(this.url + 'users/ChangeUserPassword', {
-      oldPassword,
-      newPassword
-    });
+      oldPassword: changePasswordDTO.oldPassword,
+      newPassword: changePasswordDTO.password
+    }).pipe(map((response) => {
+      return response;
+    }));
   }
 
 

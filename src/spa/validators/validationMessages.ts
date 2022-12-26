@@ -20,5 +20,9 @@ export const validationMessages = {
   confirmPassword: {
     required: 'Required field.',
     checkPasswords: 'Passwords must be same',
+  },
+
+  oldPassword: {
+    required: 'Required field.'
   }
 };

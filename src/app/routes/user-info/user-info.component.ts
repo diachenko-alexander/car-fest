@@ -3,6 +3,8 @@ import {UserInfo} from '../../../spa/interfaces/UserInfoResponseDto.interface';
 import {AppDataService} from '../../services/app-data.service';
 import {SpaModalComponent} from '../../../spa/spa-modal/spa-modal.component';
 import {MdbModalRef, MdbModalService} from 'mdb-angular-ui-kit/modal';
+import {RegistrationComponent} from '../../../spa/users/registration/registration.component';
+import {ChangePasswordComponent} from '../../../spa/users/shange-password/change-password.component';
 
 @Component({
   selector: 'app-user-info',
@@ -28,8 +30,8 @@ export class UserInfoComponent implements OnInit {
   }
 
   openModal() {
-    this.modalRef = this.modalService.open(SpaModalComponent, {
-      modalClass: 'modal-xl'
+    this.modalRef = this.modalService.open(ChangePasswordComponent, {
+      modalClass: 'modal-xl',
     })
   }
 

@@ -29,6 +29,10 @@ import {JwtModule} from '@auth0/angular-jwt';
 import { SpaModalComponent } from '../spa/spa-modal/spa-modal.component';
 import {MdbModalService} from 'mdb-angular-ui-kit/modal';
 import {OverlayModule} from '@angular/cdk/overlay';
+import { ChangePasswordComponent } from '../spa/users/shange-password/change-password.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MdbValidationModule} from 'mdb-angular-ui-kit/validation';
+import {MdbFormsModule} from 'mdb-angular-ui-kit/forms';
 
 @NgModule({
   declarations: [
@@ -47,6 +51,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
     ImageItemComponent,
     UserInfoComponent,
     SpaModalComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,10 +62,13 @@ import {OverlayModule} from '@angular/cdk/overlay';
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["localhost"],
+        allowedDomains: ['localhost'],
         disallowedRoutes: [],
       }
-    })
+    }),
+    ReactiveFormsModule,
+    MdbValidationModule,
+    MdbFormsModule
   ],
   providers: [
     UserService,
